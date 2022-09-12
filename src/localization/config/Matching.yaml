@@ -1,0 +1,46 @@
+param:
+    # data storage:
+    # map_path: /home/zwei/Downloads/LOAM/GlobalMap.pcd 
+    map_path: /home/zwei/workspace_docker/fuse_localization/workspace/fuse_localization/slam_data/map/filtered_map.pcd
+
+    # 匹配
+    registration_method: NDT   # 选择点云匹配方法，目前支持：NDT，HNU
+
+    # 当前帧
+    # no_filter指不对点云滤波，在匹配中，理论上点云越稠密，精度越高，但是速度也越慢
+    # 所以提供这种不滤波的模式做为对比，以方便使用者去体会精度和效率随稠密度的变化关系
+    frame_filter: FILTER_VOXEL # 选择滑窗地图点云滤波方法，目前支持：FILTER_VOXEL、FILTER_NO、FILTER_BOX
+
+    # 局部地图
+    # 局部地图从全局地图切割得到，此处box_filter_size是切割区间
+    # 参数顺序是min_x, max_x, min_y, max_y, min_z, max_z
+    # box_filter_size: [-150.0, 150.0, -150.0, 150.0, -150.0, 150.0]
+    box_filter_size: [-200.0, 200.0, -200.0, 200.0, -200.0, 200.0]
+    local_map_filter: FILTER_VOXEL # 选择滑窗地图点云滤波方法，目前支持：FILTER_VOXEL、FILTER_NO、FILTER_BOX
+    local_map_box_filter: FILTER_BOX
+
+    # 全局地图
+    global_map_filter: FILTER_VOXEL # 选择滑窗地图点云滤波方法，目前支持：FILTER_VOXEL、FILTER_NO、FILTER_BOX
+
+
+    # 各配置选项对应参数
+    ## 匹配相关参数
+    NDT:
+        res : 1.0
+        step_size : 0.1
+        trans_eps : 0.01
+        max_iter : 30
+
+    ## 滤波相关参数
+    FILTER_VOXEL:
+        global_map:
+           leaf_size: [0.5, 0.5, 0.5]
+            # leaf_size: [2.0, 2.0, 2.0]  
+        local_map:
+            leaf_size: [0.5, 0.5, 0.5]
+            # leaf_size: [2.0, 2.0, 2.0]
+            # leaf_size: [0.1, 0.1, 0.1]
+        frame:
+            leaf_size: [0.5, 0.5, 0.5]
+            # leaf_size: [2.0, 2.0, 2.0]
+            # leaf_size: [0.5, 0.5, 0.5]

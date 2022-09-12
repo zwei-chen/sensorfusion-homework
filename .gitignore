@@ -1,0 +1,19 @@
+devel/
+build/
+.cache/
+.cache/clangd/index/
+.catkin_tools/
+.vscode/
+src/fuse_localization/slam_data/
+src/fuse_localization/Log/
+slam_data/
+slam_data/trajectory/
+test_data/
+Log/
+
+*.log
+*.idx
+*.txt
+
+# Catkin custom files
+CATKIN_IGNORE

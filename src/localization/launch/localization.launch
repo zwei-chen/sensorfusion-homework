@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="rviz"  type="rviz"  name="rviz"  args="-d $(find localization)/rviz/matching.rviz"></node>
+    <node pkg="localization"  type="localization_node"  name="localization_node"  output="screen"></node>
+</launch>
